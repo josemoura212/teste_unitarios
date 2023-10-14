@@ -6,7 +6,13 @@ class Carrinho {
     required this.items,
   });
 
-  double totalCarrinho() => items.fold(0, (total, item) => total += item.preco);
+  double totalCarrinho() {
+    if (items.isEmpty) {
+      throw CarrinhoException();
+    }
+
+    return items.fold(0, (total, item) => total += item.preco);
+  }
 
   double totalCarrinhoComImposto() {
     var valorTotal = totalCarrinho();
@@ -22,3 +28,5 @@ class Carrinho {
     return valorTotal;
   }
 }
+
+class CarrinhoException implements Exception {}

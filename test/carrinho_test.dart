@@ -117,4 +117,106 @@ void main() {
       expect(valorTotalDoCarrinho, 22000);
     });
   });
+
+  group("Testede igualdade", () {
+    test("Teste de igualdade 1", () {
+      final iphone = Item(name: "Iphone", preco: 10000.0);
+      final items = [
+        Item(name: "Fone", preco: 10000.0),
+        iphone,
+        Item(name: "Teclado", preco: 10000.0),
+      ];
+
+      final carrinho = Carrinho(items: items);
+      // Ação ou  Execução
+
+      // Verificação
+
+      expect(
+          carrinho.items,
+          contains(
+            iphone,
+          ));
+    });
+    test("Teste de igualdade 2", () {
+      final items = [
+        Item(name: "Fone", preco: 10000.0),
+        Item(name: "Iphone", preco: 10000.0),
+        Item(name: "Teclado", preco: 10000.0),
+      ];
+
+      final carrinho = Carrinho(items: items);
+      // Ação ou  Execução
+
+      // Verificação
+
+      expect(
+          carrinho.items,
+          contains(
+            Item(name: "Iphone", preco: 10000.0),
+          ));
+    });
+    test("Teste de igualdade por tipo", () {
+      final items = [
+        Item(name: "Fone", preco: 10000.0),
+        Item(name: "Iphone", preco: 10000.0),
+        Item(name: "Teclado", preco: 10000.0),
+      ];
+
+      final carrinho = Carrinho(items: items);
+      // Ação ou  Execução
+
+      // Verificação
+
+      expect(carrinho.items, isA<List<Item>>());
+    });
+    test("Teste de Exception", () {
+      final items = <Item>[];
+
+      final carrinho = Carrinho(items: items);
+      var call = carrinho.totalCarrinho;
+      // Ação ou  Execução
+
+      // Verificação
+
+      expect(
+        () => call(),
+        throwsException,
+      );
+    });
+    test("Teste de Exception customizada", () {
+      final items = <Item>[];
+
+      final carrinho = Carrinho(items: items);
+      var call = carrinho.totalCarrinho;
+      // Ação ou  Execução
+
+      // Verificação
+
+      expect(
+        () => call(),
+        throwsA(isA<CarrinhoException>()),
+      );
+    });
+    test("Teste de Exception customizada 2", () {
+      final items = <Item>[];
+
+      final carrinho = Carrinho(items: items);
+      // Ação ou  Execução
+
+      try {
+        carrinho.totalCarrinho();
+      } on CarrinhoException {
+        print("Sucesso");
+      } catch (e) {
+        fail("Retornou outra exception $e");
+      }
+      // Verificação
+
+      // expect(
+      //   () => call(),
+      //   throwsA(isA<CarrinhoException>()),
+      // );
+    });
+  });
 }
