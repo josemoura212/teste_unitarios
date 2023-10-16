@@ -9,7 +9,7 @@ void main() {
     //açao
     var items = await repository.buscarTodos();
 
-    //execução
+    //verificação
     expect(items, isNotEmpty);
   });
   test('Buscar todos asyncrono forma 2', () async {
@@ -18,7 +18,7 @@ void main() {
     //açao
     var buscarTodos = repository.buscarTodos;
 
-    //execução
+    //verificação
     expect(buscarTodos(), completion(isNotEmpty));
   });
   test('Buscar item por id', () async {
@@ -27,7 +27,7 @@ void main() {
     //açao
     var item = repository.buscarProId(1);
 
-    //execução
+    //verificação
     expect(
         item,
         allOf([
