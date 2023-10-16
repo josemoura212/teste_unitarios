@@ -1,8 +1,9 @@
 import 'package:test/test.dart';
+import 'package:teste_unitarios/item.dart';
 import 'package:teste_unitarios/item_repository.dart';
 
 void main() {
-  test('Buscar todos asyncrono form 1', () async {
+  test('Buscar todos asyncrono forma 1', () async {
     //preparaçao
     var repository = ItemRepository();
     //açao
@@ -11,7 +12,7 @@ void main() {
     //execução
     expect(items, isNotEmpty);
   });
-  test('Buscar todos asyncrono form 2', () async {
+  test('Buscar todos asyncrono forma 2', () async {
     //preparaçao
     var repository = ItemRepository();
     //açao
@@ -19,5 +20,14 @@ void main() {
 
     //execução
     expect(buscarTodos(), completion(isNotEmpty));
+  });
+  test('Buscar item por id', () async {
+    //preparaçao
+    var repository = ItemRepository();
+    //açao
+    var item = repository.buscarProId(1);
+
+    //execução
+    expect(item, Item(name: "Iphone", preco: 10000.0));
   });
 }
