@@ -28,6 +28,11 @@ void main() {
     var item = repository.buscarProId(1);
 
     //execução
-    expect(item, Item(name: "Iphone", preco: 10000.0));
+    expect(
+        item,
+        allOf([
+          isNotNull,
+          equals(Item(name: "Iphone", preco: 10000.0)),
+        ]));
   });
 }
